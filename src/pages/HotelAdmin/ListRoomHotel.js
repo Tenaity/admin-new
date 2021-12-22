@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import HeaderAdmin from "../components/HeaderAdmin";
-import SideBar from "../components/SideBar";
+import HeaderAdmin from "../../components/HeaderAdmin";
+import SideBar from "../../components/SideBar";
 import {
   Box,
   Button,
   Flex,
   Heading,
-  SimpleGrid,
   Table,
   Tbody,
   Td,
   Text,
-  Textarea,
   Th,
   Thead,
   Tr,
@@ -22,6 +20,7 @@ import { useToast } from "@chakra-ui/react";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const ComponentToPrint = (props) => {
   const { data = [] } = props;
@@ -32,11 +31,12 @@ const ComponentToPrint = (props) => {
   const toast = useToast();
 
   const onDeleteHandle = async (id) => {
+    console.log(id);
     if (userId) {
       try {
         const option = {
           method: "delete",
-          url: `https://pbl6-travelapp.herokuapp.com/hotel/${id}/detail`,
+          url: `https://pbl6-travelapp.herokuapp.com/room/${id}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,7 +47,7 @@ const ComponentToPrint = (props) => {
             render: () => (
               <Alert status="success" variant="left-accent">
                 <AlertIcon />
-                Xoá hoá đơn thành công!
+                Xoá phòng thành công!
               </Alert>
             ),
           });
@@ -68,28 +68,13 @@ const ComponentToPrint = (props) => {
               {data && (
                 <Tr>
                   <Th fontSize="sm" fontWeight="normal">
-                    Tên khách sạn
-                  </Th>
-                  <Th fontSize="sm" fontWeight="normal">
                     Thành phố
                   </Th>
                   <Th fontSize="sm" fontWeight="normal">
-                    Địa chỉ
+                    Giá
                   </Th>
                   <Th fontSize="sm" fontWeight="normal">
-                    Tổng số phòng
-                  </Th>
-                  <Th fontSize="sm" fontWeight="normal">
-                    Số điện thoại
-                  </Th>
-                  <Th fontSize="sm" fontWeight="normal">
-                    Giá thấp nhất
-                  </Th>
-                  <Th fontSize="sm" fontWeight="normal">
-                    Giá cao nhất
-                  </Th>
-                  <Th fontSize="sm" fontWeight="normal">
-                    Thêm phòng
+                    Loại
                   </Th>
                   <Th fontSize="sm" fontWeight="normal">
                     Chỉnh sửa
@@ -112,15 +97,6 @@ const ComponentToPrint = (props) => {
                             fontWeight="normal"
                             fontSize="md"
                           >
-                            {item.name}
-                          </Text>
-                        </Td>
-                        <Td>
-                          <Text
-                            color="gray.500"
-                            fontWeight="normal"
-                            fontSize="md"
-                          >
                             {item.city}
                           </Text>
                         </Td>
@@ -130,7 +106,7 @@ const ComponentToPrint = (props) => {
                             fontWeight="normal"
                             fontSize="md"
                           >
-                            {item.address}
+                            {item.price}
                           </Text>
                         </Td>
                         <Td>
@@ -139,50 +115,11 @@ const ComponentToPrint = (props) => {
                             fontWeight="normal"
                             fontSize="md"
                           >
-                            {item.totalRooms}
+                            {item.type}
                           </Text>
                         </Td>
                         <Td>
-                          <Text
-                            color="gray.500"
-                            fontWeight="normal"
-                            fontSize="md"
-                          >
-                            {item.phone}
-                          </Text>
-                        </Td>
-                        <Td>
-                          <Text
-                            color="gray.500"
-                            fontWeight="normal"
-                            fontSize="md"
-                          >
-                            {item.priceFrom}
-                          </Text>
-                        </Td>
-                        <Td>
-                          <Text
-                            color="gray.500"
-                            fontWeight="normal"
-                            fontSize="md"
-                          >
-                            {item.priceTo}
-                          </Text>
-                        </Td>
-                        <Td>
-                          <Link to={`${item.id}/edit`}>
-                            <Text
-                              as="button"
-                              color="green.500"
-                              fontWeight="normal"
-                              fontSize="md"
-                            >
-                              Thêm phòng
-                            </Text>
-                          </Link>
-                        </Td>
-                        <Td>
-                          <Link to={`${item.id}/edit`}>
+                          <Link to={`/hoteladmin/room/${item._id}/edit`}>
                             <Text
                               as="button"
                               color="orange.500"
@@ -200,7 +137,7 @@ const ComponentToPrint = (props) => {
                             fontWeight="normal"
                             fontSize="md"
                             onClick={() => {
-                              onDeleteHandle(item.id);
+                              onDeleteHandle(item._id);
                             }}
                           >
                             Xoá
@@ -217,9 +154,10 @@ const ComponentToPrint = (props) => {
     </Box>
   );
 };
-export default function ListHotelAdmin() {
+export default function ListRoomHotelAdmin() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
+  const { id } = useParams();
   const fetcher = (url) => {
     return fetch(url, {
       method: "get",
@@ -230,7 +168,7 @@ export default function ListHotelAdmin() {
   };
 
   const { data } = useSWR(
-    [`https://pbl6-travelapp.herokuapp.com/hotel/${userId}`, token],
+    [`https://pbl6-travelapp.herokuapp.com/room/${id}/all`, token],
     fetcher,
     { refreshInterval: 1000 }
   );
@@ -242,12 +180,17 @@ export default function ListHotelAdmin() {
         <HeaderAdmin />
         <Box as="main" p="4">
           <Heading size="lg" mb="10px">
-            Danh sách khách sạn
+            Danh sách phòng khách sạn
           </Heading>
           <Box borderWidth="4px" borderStyle="dashed" rounded="md">
             <Box p="24px">
               <ComponentToPrint data={data} token={token} userId={userId} />
             </Box>
+            <Flex p="24px" justifyContent="end">
+              <Link to={`/hoteladmin/${id}/room/new`}>
+                <Button>Thêm phòng</Button>
+              </Link>
+            </Flex>
           </Box>
         </Box>
       </Box>

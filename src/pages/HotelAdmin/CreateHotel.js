@@ -9,10 +9,10 @@ import {
   Flex,
   Button,
 } from "@chakra-ui/react";
-import AppContext from "../components/AppContext";
+import AppContext from "../../components/AppContext";
 import React, { useState, useContext } from "react";
-import HeaderAdmin from "../components/HeaderAdmin";
-import SideBar from "../components/SideBar";
+import HeaderAdmin from "../../components/HeaderAdmin";
+import SideBar from "../../components/SideBar";
 import { useToast } from "@chakra-ui/react";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import axios from "axios";
@@ -135,38 +135,67 @@ export default function CreateHotel() {
               <SimpleGrid columns={2} spacing={5}>
                 <FormControl>
                   <FormLabel mb={1}>Tên khách sạn</FormLabel>
-                  <Input name="name" onChange={onChangeHandleName} />
+                  <Input
+                    name="name"
+                    value={name}
+                    onChange={onChangeHandleName}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Thành phố</FormLabel>
-                  <Input name="city" onChange={onChangeHandleCity} />
+                  <Input
+                    name="city"
+                    value={city}
+                    onChange={onChangeHandleCity}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Địa chỉ</FormLabel>
-                  <Input name="address" onChange={onChangeHandleAddress} />
+                  <Input
+                    name="address"
+                    value={address}
+                    onChange={onChangeHandleAddress}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Số điện thoại</FormLabel>
-                  <Input name="phone" onChange={onChangeHandlePhone} />
+                  <Input
+                    name="phone"
+                    value={phone}
+                    onChange={onChangeHandlePhone}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Giá thấp nhất</FormLabel>
-                  <Input name="priceFrom" onChange={onChangeHandlePriceFrom} />
+                  <Input
+                    name="priceFrom"
+                    value={priceFrom}
+                    onChange={onChangeHandlePriceFrom}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Giá cao nhất</FormLabel>
-                  <Input name="totalRooms" onChange={onChangeHandlePriceTo} />
+                  <Input
+                    name="priceTo"
+                    value={priceTo}
+                    onChange={onChangeHandlePriceTo}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Tổng số phòng</FormLabel>
                   <Input
                     name="totalRooms"
+                    value={totalRooms}
                     onChange={onChangeHandleTotalRooms}
                   />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Hình ảnh</FormLabel>
-                  <Textarea name="images" onChange={onChangeHandleImages} />
+                  <Textarea
+                    name="images"
+                    value={images}
+                    onChange={onChangeHandleImages}
+                  />
                 </FormControl>
               </SimpleGrid>
               <Flex mt={4} justifyContent="end">

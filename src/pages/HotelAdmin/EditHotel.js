@@ -9,10 +9,10 @@ import {
   Flex,
   Button,
 } from "@chakra-ui/react";
-import AppContext from "../components/AppContext";
+import AppContext from "../../components/AppContext";
 import React, { useState, useContext, useEffect } from "react";
-import HeaderAdmin from "../components/HeaderAdmin";
-import SideBar from "../components/SideBar";
+import HeaderAdmin from "../../components/HeaderAdmin";
+import SideBar from "../../components/SideBar";
 import { useToast } from "@chakra-ui/react";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import axios from "axios";
@@ -182,7 +182,7 @@ export default function EditHotel() {
                   <FormLabel mb={1}>Số điện thoại</FormLabel>
                   <Input
                     name="phone"
-                    defaultValue={city}
+                    defaultValue={phone}
                     onChange={onChangeHandlePhone}
                   />
                 </FormControl>

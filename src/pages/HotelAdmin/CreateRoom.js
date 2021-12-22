@@ -9,87 +9,62 @@ import {
   Flex,
   Button,
 } from "@chakra-ui/react";
-import AppContext from "../components/AppContext";
+import AppContext from "../../components/AppContext";
 import React, { useState, useContext } from "react";
-import HeaderAdmin from "../components/HeaderAdmin";
-import SideBar from "../components/SideBar";
+import HeaderAdmin from "../../components/HeaderAdmin";
+import SideBar from "../../components/SideBar";
 import { useToast } from "@chakra-ui/react";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import axios from "axios";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 export default function CreateHotel() {
   const toast = useToast();
-
+  const { id } = useParams();
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   const { state } = useContext(AppContext);
   const user = state?.user?.userName;
-  const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [totalRooms, setTotalRooms] = useState("");
-  const [priceFrom, setPriceFrom] = useState("");
-  const [priceTo, setPriceTo] = useState("");
+  const [price, setPrice] = useState("");
+  const [type, setType] = useState("");
   const [images, setImages] = useState([]);
-  const onChangeHandleName = (e) => {
-    setName(e.target.value);
-  };
+
   const onChangeHandleCity = (e) => {
     setCity(e.target.value);
   };
-  const onChangeHandleAddress = (e) => {
-    setAddress(e.target.value);
+  const onChangeHandleType = (e) => {
+    setType(e.target.value);
   };
-  const onChangeHandleTotalRooms = (e) => {
-    setTotalRooms(e.target.value);
-  };
+
   const onChangeHandleImages = (e) => {
     setImages(e.target.value);
   };
-  const onChangeHandlePhone = (e) => {
-    setPhone(e.target.value);
-  };
-  const onChangeHandlePriceFrom = (e) => {
-    setPriceFrom(e.target.value);
-  };
-  const onChangeHandlePriceTo = (e) => {
-    setPriceTo(e.target.value);
+  const onChangeHandlePrice = (e) => {
+    setPrice(e.target.value);
   };
   const onSubmitHandle = async (e) => {
     if (user) {
-      //   const imagesUrl = images.split(" ");
-      const totalRoomsNew = parseInt(totalRooms);
-      console.log(token);
-      console.log("addhotel", {
-        name: name,
-        idUser: userId,
+      const priceInt = parseInt(price);
+      console.log("addrooomhotel", {
+        idHotel: id,
         city: city,
-        address: address,
-        phone: phone,
-        totalRooms: totalRoomsNew,
-        availableRooms: 50,
-        imageCover: "#",
-        images: [],
-        priceFrom: priceFrom,
-        priceTo: priceTo,
+        available: ["2021/12/23", "2021/12/24", "2021/12/25"],
+        type: type,
+        images: [images],
+        price: priceInt,
       });
       try {
         e.preventDefault();
         const option = {
           method: "post",
-          url: `https://pbl6-travelapp.herokuapp.com/hotel/${userId}`,
+          url: `https://pbl6-travelapp.herokuapp.com/room`,
           data: {
-            name: name,
-            idUser: userId,
+            idHotel: id,
             city: city,
-            address: address,
-            phone: phone,
-            totalRooms: totalRoomsNew,
-            availableRooms: 50,
-            imageCover: "#",
-            images: [],
-            priceFrom: priceFrom,
-            priceTo: priceTo,
+            available: ["2021/12/23", "2021/12/24", "2021/12/25"],
+            type: type,
+            images: [images],
+            price: priceInt,
           },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -102,7 +77,7 @@ export default function CreateHotel() {
             render: () => (
               <Alert status="success" variant="left-accent">
                 <AlertIcon />
-                Tạo mới khách sạn thành công!
+                Tạo mới phòng khách sạn thành công!
               </Alert>
             ),
           });
@@ -134,35 +109,16 @@ export default function CreateHotel() {
             <Box p="24px">
               <SimpleGrid columns={2} spacing={5}>
                 <FormControl>
-                  <FormLabel mb={1}>Tên khách sạn</FormLabel>
-                  <Input name="name" onChange={onChangeHandleName} />
-                </FormControl>
-                <FormControl>
                   <FormLabel mb={1}>Thành phố</FormLabel>
                   <Input name="city" onChange={onChangeHandleCity} />
                 </FormControl>
                 <FormControl>
-                  <FormLabel mb={1}>Địa chỉ</FormLabel>
-                  <Input name="address" onChange={onChangeHandleAddress} />
+                  <FormLabel mb={1}>Giá</FormLabel>
+                  <Input name="price" onChange={onChangeHandlePrice} />
                 </FormControl>
                 <FormControl>
-                  <FormLabel mb={1}>Số điện thoại</FormLabel>
-                  <Input name="phone" onChange={onChangeHandlePhone} />
-                </FormControl>
-                <FormControl>
-                  <FormLabel mb={1}>Giá thấp nhất</FormLabel>
-                  <Input name="priceFrom" onChange={onChangeHandlePriceFrom} />
-                </FormControl>
-                <FormControl>
-                  <FormLabel mb={1}>Giá cao nhất</FormLabel>
-                  <Input name="totalRooms" onChange={onChangeHandlePriceTo} />
-                </FormControl>
-                <FormControl>
-                  <FormLabel mb={1}>Tổng số phòng</FormLabel>
-                  <Input
-                    name="totalRooms"
-                    onChange={onChangeHandleTotalRooms}
-                  />
+                  <FormLabel mb={1}>Loại</FormLabel>
+                  <Input name="type" onChange={onChangeHandleType} />
                 </FormControl>
                 <FormControl>
                   <FormLabel mb={1}>Hình ảnh</FormLabel>

@@ -21,10 +21,12 @@ import SearchResult from "./pages/SearchResult";
 import HotelDetail from "./pages/HotelDetail";
 import HistoryBill from "./pages/HistoryBill";
 import DashBoard from "./pages/DashBoard";
-import CreateHotel from "./pages/CreateHotel";
-import ListHotelAdmin from "./pages/ListHotelAdmin";
-import EditHotel from "./pages/EditHotel";
-import CreateRoom from "./pages/EditHotel";
+import CreateHotel from "./pages/HotelAdmin/CreateHotel";
+import ListHotelAdmin from "./pages/HotelAdmin/ListHotelAdmin";
+import EditHotel from "./pages/HotelAdmin/EditHotel";
+import CreateRoom from "./pages/HotelAdmin/CreateRoom";
+import ListRoomHotelAdmin from "./pages/HotelAdmin/ListRoomHotel";
+import EditRoom from "./pages/HotelAdmin/EditRoom";
 const theme = extendTheme();
 function Hotel() {
   let { path } = useRouteMatch();
@@ -54,11 +56,36 @@ function HotelAdmin() {
         <Route path={`${path}/new`}>
           <CreateHotel />
         </Route>
-        <Route path={`${path}/new/room`}>
-          <CreateRoom />
-        </Route>
         <Route path={`${path}/:id/edit`}>
           <EditHotel />
+        </Route>
+        <Route path={`${path}/:id/room/list`}>
+          <ListRoomHotelAdmin />
+        </Route>
+        <Route path={`${path}/:id/room/new`}>
+          <CreateRoom />
+        </Route>
+        <Route path={`${path}/room/:id/edit`}>
+          <EditRoom />
+        </Route>
+      </Switch>
+    </Fragment>
+  );
+}
+function RoomAdmin() {
+  let { path } = useRouteMatch();
+  console.log(path);
+  return (
+    <Fragment>
+      <Switch>
+        <Route path={`hotel/:id/${path}/list`}>
+          <ListRoomHotelAdmin />
+        </Route>
+        <Route path={`hotel/${path}/new`}>
+          <CreateRoom />
+        </Route>
+        <Route path={`hotel/${path}/:id/edit`}>
+          <EditRoom />
         </Route>
       </Switch>
     </Fragment>
