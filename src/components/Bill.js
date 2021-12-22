@@ -37,24 +37,9 @@ const Bill = () => {
     fetcher,
     { refreshInterval: 1000 }
   );
-  const billFilter = bills?.filter((item) => item.status === false);
+  // const billFilter = bills?.filter((item) => item.status === false) || [];
+  const billFilter = [];
   console.log("billFilter", billFilter);
-  // const onSubmitHandle = async (e) => {
-  //   try {
-  //     e.preventDefault();
-  //     const option = {
-  //       method: "get",
-  //       url: `https://pbl6-travelapp.herokuapp.com/bill/${userId}`,
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     };
-  //     const response = await axios(option);
-  //     console.log("axios", response.data);
-  //   } catch (err) {
-  //     console.log("loi");
-  //   }
-  // };
 
   return (
     <>

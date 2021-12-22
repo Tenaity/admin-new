@@ -289,13 +289,10 @@ const ComponentToPrint = (props) => {
 
 function Invoice() {
   const textColor = useColorModeValue("gray.700", "white");
-
   const componentRef = useRef();
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
-  console.log("origin", userId);
   let { id } = useParams();
-  console.log("BillIDDDD", token);
   const fetcher = (url) => {
     return fetch(url, {
       method: "get",
@@ -304,7 +301,7 @@ function Invoice() {
       },
     }).then((response) => response.json());
   };
-
+  console.log("id invoice", id);
   const { data: bill } = useSWR(
     [`https://pbl6-travelapp.herokuapp.com/bill/${userId}/${id}`, token],
     fetcher,

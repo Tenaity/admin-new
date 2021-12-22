@@ -103,7 +103,7 @@ const Navbar = () => {
                     color: "green.500",
                   }}
                 >
-                  Đặt phòng khách sạn
+                  Dịch vụ khách sạn
                 </Button>
               </Link>
               <Link to="/restaurant">
@@ -114,7 +114,7 @@ const Navbar = () => {
                     color: "green.500",
                   }}
                 >
-                  Đặt bàn nhà hàng
+                  Dịch vụ nhà hàng
                 </Button>
               </Link>
               <Link to="/car">
@@ -125,7 +125,7 @@ const Navbar = () => {
                     color: "green.500",
                   }}
                 >
-                  Thuê xe tự lái
+                  Dịch vụ thuê xe
                 </Button>
               </Link>
 

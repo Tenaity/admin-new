@@ -20,7 +20,11 @@ import Invoice from "./pages/Invoice";
 import SearchResult from "./pages/SearchResult";
 import HotelDetail from "./pages/HotelDetail";
 import HistoryBill from "./pages/HistoryBill";
-
+import DashBoard from "./pages/DashBoard";
+import CreateHotel from "./pages/CreateHotel";
+import ListHotelAdmin from "./pages/ListHotelAdmin";
+import EditHotel from "./pages/EditHotel";
+import CreateRoom from "./pages/EditHotel";
 const theme = extendTheme();
 function Hotel() {
   let { path } = useRouteMatch();
@@ -33,6 +37,28 @@ function Hotel() {
         </Route>
         <Route path={`${path}/:id`}>
           <HotelDetail />
+        </Route>
+      </Switch>
+    </Fragment>
+  );
+}
+function HotelAdmin() {
+  let { path } = useRouteMatch();
+  console.log(path);
+  return (
+    <Fragment>
+      <Switch>
+        <Route path={`${path}/list`}>
+          <ListHotelAdmin />
+        </Route>
+        <Route path={`${path}/new`}>
+          <CreateHotel />
+        </Route>
+        <Route path={`${path}/new/room`}>
+          <CreateRoom />
+        </Route>
+        <Route path={`${path}/:id/edit`}>
+          <EditHotel />
         </Route>
       </Switch>
     </Fragment>
@@ -141,6 +167,9 @@ const App = () => {
     <ChakraProvider theme={theme}>
       <AppContext.Provider value={{ state, dispatch }}>
         <Switch>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
           <Route path="/car">
             <Car />
           </Route>
@@ -152,9 +181,6 @@ const App = () => {
           </Route>
           <Route path="/room">
             <Room />
-          </Route>
-          <Route path="/signin">
-            <SignIn />
           </Route>
           <Route path="/signup">
             <SignUp />
@@ -174,8 +200,11 @@ const App = () => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="*">
-            <Home />
+          <Route path="/dashboard">
+            <DashBoard />
+          </Route>
+          <Route path="/hoteladmin">
+            <HotelAdmin />
           </Route>
         </Switch>
       </AppContext.Provider>
