@@ -293,6 +293,9 @@ const App = () => {
           <Route path="/users">
             <UserAdmin />
           </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
         </Switch>
       </AppContext.Provider>
     </ChakraProvider>

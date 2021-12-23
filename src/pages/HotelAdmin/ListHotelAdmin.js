@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import SideBar from "../../components/SideBar";
+import AppContext from "../../components/AppContext";
 import {
   Box,
   Heading,
@@ -18,7 +19,6 @@ import { useToast } from "@chakra-ui/react";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 const ComponentToPrint = (props) => {
   const { data = [] } = props;
   const { userId } = props;
@@ -216,6 +216,10 @@ const ComponentToPrint = (props) => {
 export default function ListHotelAdmin() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
+  var data = "";
+  const { state } = useContext(AppContext);
+  const user = state.user;
+  const { userName } = user || "";
   const fetcher = (url) => {
     return fetch(url, {
       method: "get",
@@ -224,13 +228,21 @@ export default function ListHotelAdmin() {
       },
     }).then((response) => response.json());
   };
-
-  const { data } = useSWR(
+  const { data: admin } = useSWR(
+    [`https://pbl6-travelapp.herokuapp.com/hotel`, token],
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+  const { data: partner } = useSWR(
     [`https://pbl6-travelapp.herokuapp.com/hotel/${userId}`, token],
     fetcher,
     { refreshInterval: 1000 }
   );
-  console.log(data);
+  if (userName === "admin") {
+    data = admin;
+  } else {
+    data = partner;
+  }
   return (
     <Box as="section" bg="gray.50" minH="100vh">
       <SideBar />

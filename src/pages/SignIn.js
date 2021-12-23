@@ -51,7 +51,7 @@ const SignIn = () => {
       localStorage.setItem("token", tokens.access.token);
       localStorage.setItem("userId", userId);
       dispatch({ type: "CURRENT_USER", payload: { userName, userId } });
-      history.push("/");
+      history.push("/dashboard");
     } catch (err) {
       setErrorMessage(err.response.data.message);
     }
