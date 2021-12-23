@@ -72,19 +72,56 @@ function HotelAdmin() {
     </Fragment>
   );
 }
-function RoomAdmin() {
+function RestaurantAdmin() {
   let { path } = useRouteMatch();
   console.log(path);
   return (
     <Fragment>
       <Switch>
-        <Route path={`hotel/:id/${path}/list`}>
+        <Route path={`${path}/list`}>
+          <ListHotelAdmin />
+        </Route>
+        <Route path={`${path}/new`}>
+          <CreateHotel />
+        </Route>
+        <Route path={`${path}/:id/edit`}>
+          <EditHotel />
+        </Route>
+        <Route path={`${path}/:id/room/list`}>
           <ListRoomHotelAdmin />
         </Route>
-        <Route path={`hotel/${path}/new`}>
+        <Route path={`${path}/:id/room/new`}>
           <CreateRoom />
         </Route>
-        <Route path={`hotel/${path}/:id/edit`}>
+        <Route path={`${path}/room/:id/edit`}>
+          <EditRoom />
+        </Route>
+      </Switch>
+    </Fragment>
+  );
+}
+function SelfVehicleAdmin() {
+  let { path } = useRouteMatch();
+  console.log(path);
+  return (
+    <Fragment>
+      <Switch>
+        <Route path={`${path}/list`}>
+          <ListHotelAdmin />
+        </Route>
+        <Route path={`${path}/new`}>
+          <CreateHotel />
+        </Route>
+        <Route path={`${path}/:id/edit`}>
+          <EditHotel />
+        </Route>
+        <Route path={`${path}/:id/room/list`}>
+          <ListRoomHotelAdmin />
+        </Route>
+        <Route path={`${path}/:id/room/new`}>
+          <CreateRoom />
+        </Route>
+        <Route path={`${path}/room/:id/edit`}>
           <EditRoom />
         </Route>
       </Switch>
@@ -232,6 +269,12 @@ const App = () => {
           </Route>
           <Route path="/hoteladmin">
             <HotelAdmin />
+          </Route>
+          <Route path="/restaurantadmin">
+            <RestaurantAdmin />
+          </Route>
+          <Route path="/selfvehicleadmin">
+            <SelfVehicleAdmin />
           </Route>
         </Switch>
       </AppContext.Provider>
