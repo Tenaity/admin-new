@@ -27,6 +27,7 @@ import EditHotel from "./pages/HotelAdmin/EditHotel";
 import CreateRoom from "./pages/HotelAdmin/CreateRoom";
 import ListRoomHotelAdmin from "./pages/HotelAdmin/ListRoomHotel";
 import EditRoom from "./pages/HotelAdmin/EditRoom";
+import ListUserAdmin from "./pages/UserAdmin/ListUserAdmin";
 const theme = extendTheme();
 function Hotel() {
   let { path } = useRouteMatch();
@@ -123,6 +124,19 @@ function SelfVehicleAdmin() {
         </Route>
         <Route path={`${path}/room/:id/edit`}>
           <EditRoom />
+        </Route>
+      </Switch>
+    </Fragment>
+  );
+}
+function UserAdmin() {
+  let { path } = useRouteMatch();
+  console.log(path);
+  return (
+    <Fragment>
+      <Switch>
+        <Route path={`${path}/list`}>
+          <ListUserAdmin />
         </Route>
       </Switch>
     </Fragment>
@@ -275,6 +289,9 @@ const App = () => {
           </Route>
           <Route path="/selfvehicleadmin">
             <SelfVehicleAdmin />
+          </Route>
+          <Route path="/users">
+            <UserAdmin />
           </Route>
         </Switch>
       </AppContext.Provider>

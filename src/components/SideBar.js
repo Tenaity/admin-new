@@ -8,18 +8,23 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaClipboardCheck, FaRss } from "react-icons/fa";
-import { AiFillGift } from "react-icons/ai";
-import { BsGearFill } from "react-icons/bs";
-import { HiCode, HiCollection } from "react-icons/hi";
+import {
+  IoBedOutline,
+  IoCarSportOutline,
+  IoPeopleOutline,
+  IoRestaurantOutline,
+} from "react-icons/io5";
+import { HiCode } from "react-icons/hi";
 import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import React from "react";
 import gogo from "../assets/img/logo2.png";
 import { Link } from "react-router-dom";
-export default function Swibc() {
+export default function SideBar({ user }) {
   const hotel = useDisclosure();
   const restaurant = useDisclosure();
   const selfVehicle = useDisclosure();
+  const userManager = useDisclosure();
+  console.log(user);
 
   const NavItem = (props) => {
     const { icon, children, url, ...rest } = props;
@@ -117,10 +122,7 @@ export default function Swibc() {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <NavItem icon={MdHome} url="home">
-          Home
-        </NavItem>
-        <NavItem icon={HiCode} onClick={hotel.onToggle}>
+        <NavItem icon={IoBedOutline} onClick={hotel.onToggle}>
           Dịch vụ khách sạn
           <Icon
             as={MdKeyboardArrowRight}
@@ -136,7 +138,7 @@ export default function Swibc() {
             Thêm mới khách sạn
           </NavItem>
         </Collapse>
-        <NavItem icon={HiCode} onClick={restaurant.onToggle}>
+        <NavItem icon={IoRestaurantOutline} onClick={restaurant.onToggle}>
           Dịch vụ nhà hàng
           <Icon
             as={MdKeyboardArrowRight}
@@ -152,7 +154,7 @@ export default function Swibc() {
             Thêm mới nhà hàng
           </NavItem>
         </Collapse>
-        <NavItem icon={HiCode} onClick={selfVehicle.onToggle}>
+        <NavItem icon={IoCarSportOutline} onClick={selfVehicle.onToggle}>
           Dịch vụ thuê xe
           <Icon
             as={MdKeyboardArrowRight}
@@ -169,8 +171,19 @@ export default function Swibc() {
           </NavItem>
         </Collapse>
 
-        <NavItem icon={AiFillGift}>Changelog</NavItem>
-        <NavItem icon={BsGearFill}>Settings</NavItem>
+        <NavItem icon={IoPeopleOutline} onClick={userManager.onToggle}>
+          Quản lý người dùng
+          <Icon
+            as={MdKeyboardArrowRight}
+            ml="auto"
+            transform={userManager.isOpen && "rotate(90deg)"}
+          />
+        </NavItem>
+        <Collapse in={userManager.isOpen}>
+          <NavItem pl="12" py="2" url="users/list">
+            Danh sách người dùng
+          </NavItem>
+        </Collapse>
       </Flex>
     </Box>
   );
