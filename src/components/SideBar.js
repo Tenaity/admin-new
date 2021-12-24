@@ -24,8 +24,7 @@ export default function SideBar({ user }) {
   const restaurant = useDisclosure();
   const selfVehicle = useDisclosure();
   const userManager = useDisclosure();
-  console.log(user);
-
+  const { userName } = user || "";
   const NavItem = (props) => {
     const { icon, children, url, ...rest } = props;
     return (
@@ -170,20 +169,23 @@ export default function SideBar({ user }) {
             Thêm mới xe cho thuê
           </NavItem>
         </Collapse>
-
-        <NavItem icon={IoPeopleOutline} onClick={userManager.onToggle}>
-          Quản lý người dùng
-          <Icon
-            as={MdKeyboardArrowRight}
-            ml="auto"
-            transform={userManager.isOpen && "rotate(90deg)"}
-          />
-        </NavItem>
-        <Collapse in={userManager.isOpen}>
-          <NavItem pl="12" py="2" url="users/list">
-            Danh sách người dùng
-          </NavItem>
-        </Collapse>
+        {userName === "admin" && (
+          <>
+            <NavItem icon={IoPeopleOutline} onClick={userManager.onToggle}>
+              Quản lý người dùng
+              <Icon
+                as={MdKeyboardArrowRight}
+                ml="auto"
+                transform={userManager.isOpen && "rotate(90deg)"}
+              />
+            </NavItem>
+            <Collapse in={userManager.isOpen}>
+              <NavItem pl="12" py="2" url="users/list">
+                Danh sách người dùng
+              </NavItem>
+            </Collapse>
+          </>
+        )}
       </Flex>
     </Box>
   );

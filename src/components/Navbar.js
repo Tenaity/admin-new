@@ -147,11 +147,9 @@ const Navbar = () => {
                         <Link to="/historybills">Lịch sử thanh toán</Link>
                       </MenuItem>
                       <MenuDivider />
-                      <MenuItem>
+                      <MenuItem onClick={signOut}>
                         {" "}
-                        <Text _focus={{ boxShadow: "none" }} onClick={signOut}>
-                          Đăng xuất
-                        </Text>
+                        <Text _focus={{ boxShadow: "none" }}>Đăng xuất</Text>
                       </MenuItem>
                     </MenuList>
                   </Menu>
