@@ -29,7 +29,6 @@ export default function EditRestaurant() {
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
-  const [fee, setFee] = useState("");
   const [totalTables, setTotalTables] = useState("");
   const [availableTables, setAvailableTables] = useState("");
   const [priceFrom, setPriceFrom] = useState("");
@@ -62,9 +61,6 @@ export default function EditRestaurant() {
   const onChangeHandlePriceTo = (e) => {
     setPriceTo(e.target.value);
   };
-  const onChangeHandleFee = (e) => {
-    setFee(e.target.value);
-  };
   const onChangeHandleType = (e) => {
     setType(e.target.value);
   };
@@ -85,7 +81,6 @@ export default function EditRestaurant() {
     setTotalTables(data.totalTables);
     setAvailableTables(data.availableTables);
     setCity(data.city);
-    setFee(data.fee);
     setType(data.type);
     console.log("aaa", response.data);
   }, []);
@@ -108,8 +103,7 @@ export default function EditRestaurant() {
             images: images,
             priceFrom: Number(priceFrom),
             priceTo: Number(priceTo),
-            fee: Number(fee),
-            type: type
+            type: type,
           },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -126,7 +120,7 @@ export default function EditRestaurant() {
               </Alert>
             ),
           });
-          history.push("/restaurantAdmin/list")
+          history.push("/restaurantAdmin/list");
         }
       } catch (err) {
         console.log(err);
@@ -216,14 +210,6 @@ export default function EditRestaurant() {
                     name="availableTables"
                     defaultValue={availableTables}
                     onChange={onChangeHandleAvailableTables}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel mb={1}>Phí phụ thu</FormLabel>
-                  <Input
-                    name="fee"
-                    defaultValue={fee}
-                    onChange={onChangeHandleFee}
                   />
                 </FormControl>
                 <FormControl>

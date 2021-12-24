@@ -31,7 +31,6 @@ export default function CreateRestaurant() {
   const [totalTables, setTotalTables] = useState("");
   const [priceFrom, setPriceFrom] = useState("");
   const [priceTo, setPriceTo] = useState("");
-  const [fee, setFee] = useState("");
   const [images, setImages] = useState([]);
   const [type, setType] = useState("");
 
@@ -59,9 +58,6 @@ export default function CreateRestaurant() {
   const onChangeHandlePriceTo = (e) => {
     setPriceTo(e.target.value);
   };
-  const onChangeHandleFee = (e) => {
-    setFee(e.target.value);
-  };
   const onSubmitHandle = async (e) => {
     if (user) {
       try {
@@ -80,8 +76,8 @@ export default function CreateRestaurant() {
             priceFrom: Number(priceFrom),
             priceTo: Number(priceTo),
             availableTables: Number(totalTables),
-            fee: Number(fee),
-            type: type
+            type: type,
+            fee: 10,
           },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -180,14 +176,6 @@ export default function CreateRestaurant() {
                     name="totalTables"
                     value={totalTables}
                     onChange={onChangeHandleTotalTables}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel mb={1}>Phí phụ thu</FormLabel>
-                  <Input
-                    name="fee"
-                    value={fee}
-                    onChange={onChangeHandleFee}
                   />
                 </FormControl>
                 <FormControl>

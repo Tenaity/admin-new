@@ -88,9 +88,6 @@ const ComponentToPrint = (props) => {
                     Giá cao nhất
                   </Th>
                   <Th fontSize="sm" fontWeight="normal">
-                    Phí phụ thu
-                  </Th>
-                  <Th fontSize="sm" fontWeight="normal">
                     Chỉnh sửa
                   </Th>
                   <Th fontSize="sm" fontWeight="normal">
@@ -175,15 +172,6 @@ const ComponentToPrint = (props) => {
                             fontSize="md"
                           >
                             {item.priceTo}$
-                          </Text>
-                        </Td>
-                        <Td>
-                          <Text
-                            color="gray.500"
-                            fontWeight="normal"
-                            fontSize="md"
-                          >
-                            {item.fee}$
                           </Text>
                         </Td>
                         <Td>
