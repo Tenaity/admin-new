@@ -28,6 +28,16 @@ import CreateRoom from "./pages/HotelAdmin/CreateRoom";
 import ListRoomHotelAdmin from "./pages/HotelAdmin/ListRoomHotel";
 import EditRoom from "./pages/HotelAdmin/EditRoom";
 import ListUserAdmin from "./pages/UserAdmin/ListUserAdmin";
+import CreateSelfVehicle from "./pages/SelfVehicleAdmin/CreateSelfVehicle";
+import ListSelfVehicleAdmin from "./pages/SelfVehicleAdmin/ListSelfVehicleAdmin";
+import EditSelfVehicle from "./pages/SelfVehicleAdmin/EditSelfVehicle";
+import CreateDetailVehicle from "./pages/SelfVehicleAdmin/CreateDetailVehicle";
+import ListDetailVehicleAdmin from "./pages/SelfVehicleAdmin/ListDetailVehicleAdmin";
+import EditDetailVehicle from "./pages/SelfVehicleAdmin/EditDetailVehicle";
+import CreateRestaurant from "./pages/RestaurantAdmin/CreateRestaurant";
+import ListRestaurantAdmin from "./pages/RestaurantAdmin/ListRestaurantAdmin";
+import EditRestaurant from "./pages/RestaurantAdmin/EditRestaurant";
+
 const theme = extendTheme();
 function Hotel() {
   let { path } = useRouteMatch();
@@ -80,22 +90,13 @@ function RestaurantAdmin() {
     <Fragment>
       <Switch>
         <Route path={`${path}/list`}>
-          <ListHotelAdmin />
+          <ListRestaurantAdmin />
         </Route>
         <Route path={`${path}/new`}>
-          <CreateHotel />
+          <CreateRestaurant />
         </Route>
         <Route path={`${path}/:id/edit`}>
-          <EditHotel />
-        </Route>
-        <Route path={`${path}/:id/room/list`}>
-          <ListRoomHotelAdmin />
-        </Route>
-        <Route path={`${path}/:id/room/new`}>
-          <CreateRoom />
-        </Route>
-        <Route path={`${path}/room/:id/edit`}>
-          <EditRoom />
+          <EditRestaurant />
         </Route>
       </Switch>
     </Fragment>
@@ -108,22 +109,22 @@ function SelfVehicleAdmin() {
     <Fragment>
       <Switch>
         <Route path={`${path}/list`}>
-          <ListHotelAdmin />
+          <ListSelfVehicleAdmin />
         </Route>
         <Route path={`${path}/new`}>
-          <CreateHotel />
+          <CreateSelfVehicle />
         </Route>
         <Route path={`${path}/:id/edit`}>
-          <EditHotel />
+          <EditSelfVehicle />
         </Route>
-        <Route path={`${path}/:id/room/list`}>
-          <ListRoomHotelAdmin />
+        <Route path={`${path}/:id/detailVehicle/list`}>
+          <ListDetailVehicleAdmin />
         </Route>
-        <Route path={`${path}/:id/room/new`}>
-          <CreateRoom />
+        <Route path={`${path}/:id/detailVehicle/new`}>
+          <CreateDetailVehicle />
         </Route>
-        <Route path={`${path}/room/:id/edit`}>
-          <EditRoom />
+        <Route path={`${path}/:idVehicle/detailVehicle/:id/edit`}>
+          <EditDetailVehicle />
         </Route>
       </Switch>
     </Fragment>

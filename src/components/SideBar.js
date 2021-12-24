@@ -147,10 +147,10 @@ export default function SideBar({ user }) {
           />
         </NavItem>
         <Collapse in={restaurant.isOpen}>
-          <NavItem pl="12" py="2" url="listrestaurant">
+          <NavItem pl="12" py="2" url="restaurantAdmin/list">
             Danh sách nhà hàng
           </NavItem>
-          <NavItem pl="12" py="2" url="addrestaurant">
+          <NavItem pl="12" py="2" url="restaurantAdmin/new">
             Thêm mới nhà hàng
           </NavItem>
         </Collapse>
@@ -163,10 +163,10 @@ export default function SideBar({ user }) {
           />
         </NavItem>
         <Collapse in={selfVehicle.isOpen}>
-          <NavItem pl="12" py="2" url="listselfvehicle">
+          <NavItem pl="12" py="2" url="selfVehicleAdmin/list">
             Danh sách xe cho thuê
           </NavItem>
-          <NavItem pl="12" py="2" url="addselfvehicle">
+          <NavItem pl="12" py="2" url="selfVehicleAdmin/new">
             Thêm mới xe cho thuê
           </NavItem>
         </Collapse>
