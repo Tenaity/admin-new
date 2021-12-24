@@ -24,7 +24,7 @@ export default function CreateSelfVehicle() {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   const { state } = useContext(AppContext);
-  const user = state?.user?.userName;
+  const user = state?.user;
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
@@ -72,7 +72,7 @@ export default function CreateSelfVehicle() {
               </Alert>
             ),
           });
-          history.push("/selfVehicleAdmin/list")
+          history.push("/selfVehicleAdmin/list");
         }
       } catch (err) {
         console.log(err);
@@ -90,7 +90,7 @@ export default function CreateSelfVehicle() {
   };
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">

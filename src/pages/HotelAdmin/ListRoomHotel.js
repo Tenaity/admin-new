@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import SideBar from "../../components/SideBar";
 import {
@@ -21,7 +21,7 @@ import { Alert, AlertIcon } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-
+import AppContext from "../../components/AppContext";
 const ComponentToPrint = (props) => {
   const { data = [] } = props;
   const { userId } = props;
@@ -157,6 +157,8 @@ const ComponentToPrint = (props) => {
 export default function ListRoomHotelAdmin() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
+  const { state } = useContext(AppContext);
+  const user = state?.user;
   const { id } = useParams();
   const fetcher = (url) => {
     return fetch(url, {
@@ -175,7 +177,7 @@ export default function ListRoomHotelAdmin() {
   console.log(data);
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">

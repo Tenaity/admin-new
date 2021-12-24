@@ -25,7 +25,7 @@ export default function CreateDetailVehicle() {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   const { state } = useContext(AppContext);
-  const user = state?.user?.userName;
+  const user = state?.user;
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
   const [images, setImages] = useState([]);
@@ -54,7 +54,7 @@ export default function CreateDetailVehicle() {
             type: type,
             images: [images],
             price: priceInt,
-            imageCover: "#"
+            imageCover: "#",
           },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ export default function CreateDetailVehicle() {
   };
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">

@@ -23,7 +23,7 @@ export default function CreateHotel() {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   const { state } = useContext(AppContext);
-  const user = state?.user?.userName;
+  const user = state?.user;
   const [city, setCity] = useState("");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
@@ -98,7 +98,7 @@ export default function CreateHotel() {
   };
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">

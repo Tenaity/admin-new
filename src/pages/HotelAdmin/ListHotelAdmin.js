@@ -245,7 +245,7 @@ export default function ListHotelAdmin() {
   }
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">

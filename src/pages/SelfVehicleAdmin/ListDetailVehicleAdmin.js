@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import SideBar from "../../components/SideBar";
 import {
@@ -21,6 +21,7 @@ import { Alert, AlertIcon } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import AppContext from "../../components/AppContext";
 
 const ComponentToPrint = (props) => {
   const { data = [] } = props;
@@ -108,7 +109,9 @@ const ComponentToPrint = (props) => {
                           </Text>
                         </Td>
                         <Td>
-                          <Link to={`/selfVehicleAdmin/${id}/detailVehicle/${item._id}/edit`}>
+                          <Link
+                            to={`/selfVehicleAdmin/${id}/detailVehicle/${item._id}/edit`}
+                          >
                             <Text
                               as="button"
                               color="orange.500"
@@ -147,6 +150,8 @@ export default function ListDetailVehicleAdmin() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const { id } = useParams();
+  const { state } = useContext(AppContext);
+  const user = state?.user;
   const fetcher = (url) => {
     return fetch(url, {
       method: "get",
@@ -164,7 +169,7 @@ export default function ListDetailVehicleAdmin() {
   console.log(data);
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">

@@ -24,7 +24,7 @@ export default function EditDetailVehicle() {
   const { id, idVehicle } = useParams();
   const token = localStorage.getItem("token");
   const { state } = useContext(AppContext);
-  const user = state?.user?.userName;
+  const user = state?.user;
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
   const [images, setImages] = useState([]);
@@ -84,7 +84,7 @@ export default function EditDetailVehicle() {
               </Alert>
             ),
           });
-          history.push(`/selfVehicleAdmin/${idVehicle}/detailVehicle/list`)
+          history.push(`/selfVehicleAdmin/${idVehicle}/detailVehicle/list`);
         }
       } catch (err) {
         console.log(err);
@@ -102,7 +102,7 @@ export default function EditDetailVehicle() {
   };
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">

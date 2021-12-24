@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import SideBar from "../../components/SideBar";
 import {
@@ -18,6 +18,7 @@ import { useToast } from "@chakra-ui/react";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import AppContext from "../../components/AppContext";
 
 const ComponentToPrint = (props) => {
   const { data = [] } = props;
@@ -168,6 +169,8 @@ const ComponentToPrint = (props) => {
 export default function ListSelfVehicleAdmin() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
+  const { state } = useContext(AppContext);
+  const user = state?.user;
   const fetcher = (url) => {
     return fetch(url, {
       method: "get",
@@ -185,7 +188,7 @@ export default function ListSelfVehicleAdmin() {
   console.log(data);
   return (
     <Box as="section" bg="gray.50" minH="100vh">
-      <SideBar />
+      <SideBar user={user} />
       <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
         <HeaderAdmin />
         <Box as="main" p="4">
