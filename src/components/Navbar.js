@@ -47,7 +47,8 @@ const Navbar = () => {
       url: "https://pbl6-travelapp.herokuapp.com/auth/logout",
       data: { refreshToken: { token } },
     };
-    axios(option);
+    const response = axios(option);
+    console.log(response);
     toast({
       render: () => (
         <Alert status="success" variant="left-accent">

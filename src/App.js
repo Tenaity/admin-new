@@ -238,6 +238,9 @@ const App = () => {
           <Route exact path="/">
             <SignIn />
           </Route>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
           <Route path="/car">
             <Car />
           </Route>
