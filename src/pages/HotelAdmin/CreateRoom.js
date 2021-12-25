@@ -45,14 +45,6 @@ export default function CreateHotel() {
   const onSubmitHandle = async (e) => {
     if (user) {
       const priceInt = parseInt(price);
-      console.log("addrooomhotel", {
-        idHotel: id,
-        city: city,
-        available: ["2021/12/23", "2021/12/24", "2021/12/25"],
-        type: type,
-        images: [images],
-        price: priceInt,
-      });
       try {
         e.preventDefault();
         const option = {
@@ -71,7 +63,6 @@ export default function CreateHotel() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 201) {
           toast({
             render: () => (

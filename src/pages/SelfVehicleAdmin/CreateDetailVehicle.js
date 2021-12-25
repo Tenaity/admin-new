@@ -61,7 +61,6 @@ export default function CreateDetailVehicle() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 201) {
           toast({
             render: () => (

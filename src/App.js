@@ -41,7 +41,6 @@ import EditRestaurant from "./pages/RestaurantAdmin/EditRestaurant";
 const theme = extendTheme();
 function Hotel() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -57,7 +56,6 @@ function Hotel() {
 }
 function HotelAdmin() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -85,7 +83,6 @@ function HotelAdmin() {
 }
 function RestaurantAdmin() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -104,7 +101,6 @@ function RestaurantAdmin() {
 }
 function SelfVehicleAdmin() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -132,7 +128,6 @@ function SelfVehicleAdmin() {
 }
 function UserAdmin() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -145,7 +140,6 @@ function UserAdmin() {
 }
 function Room() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -158,7 +152,6 @@ function Room() {
 }
 function Restaurant() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -174,7 +167,6 @@ function Restaurant() {
 }
 function Car() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -190,7 +182,6 @@ function Car() {
 }
 function Payment() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -203,7 +194,6 @@ function Payment() {
 }
 function Search() {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Fragment>
       <Switch>
@@ -229,7 +219,6 @@ const App = () => {
         },
       };
       const response = await axios(option);
-      console.log(response);
       if (response) {
         const userName = response.data.name;
         dispatch({ type: "CURRENT_USER", payload: { userName } });
@@ -246,7 +235,7 @@ const App = () => {
     <ChakraProvider theme={theme}>
       <AppContext.Provider value={{ state, dispatch }}>
         <Switch>
-          <Route path="/signin">
+          <Route exact path="/">
             <SignIn />
           </Route>
           <Route path="/car">
@@ -275,9 +264,6 @@ const App = () => {
           </Route>
           <Route path="/historybills">
             <HistoryBill />
-          </Route>
-          <Route exact path="/">
-            <Home />
           </Route>
           <Route path="/dashboard">
             <DashBoard />

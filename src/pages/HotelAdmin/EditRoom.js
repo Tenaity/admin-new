@@ -54,20 +54,10 @@ export default function EditHotel() {
     setType(data.type);
     setCity(data.city);
     setRoom(data);
-    console.log("rooooom", room);
-    console.log("bbb", response.data);
   }, []);
 
   const onSubmitHandle = async (e) => {
     const priceInt = parseInt(price);
-    console.log("dataaa", {
-      idHotel: room.idHotel.id,
-      city: city,
-      available: ["2021/12/23", "2021/12/24", "2021/12/25"],
-      type: type,
-      images: [images],
-      price: priceInt,
-    });
     if (user) {
       try {
         e.preventDefault();
@@ -87,7 +77,6 @@ export default function EditHotel() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 200) {
           toast({
             render: () => (

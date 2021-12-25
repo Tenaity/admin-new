@@ -82,7 +82,6 @@ export default function EditRestaurant() {
     setAvailableTables(data.availableTables);
     setCity(data.city);
     setType(data.type);
-    console.log("aaa", response.data);
   }, []);
 
   const onSubmitHandle = async (e) => {
@@ -110,7 +109,6 @@ export default function EditRestaurant() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 200) {
           toast({
             render: () => (

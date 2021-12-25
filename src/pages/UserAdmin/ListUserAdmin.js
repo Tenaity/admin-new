@@ -22,8 +22,6 @@ const ComponentToPrint = (props) => {
   const { data = [] } = props;
   const { userId } = props;
   const { token } = props;
-  console.log("useriddddd", userId);
-  console.log("tokennnn", token);
   const toast = useToast();
 
   const onDeleteHandle = async (id) => {
@@ -47,7 +45,6 @@ const ComponentToPrint = (props) => {
             ),
           });
         }
-        console.log(response);
       } catch (error) {
         console.log(error);
       }

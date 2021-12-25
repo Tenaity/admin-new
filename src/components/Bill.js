@@ -39,7 +39,6 @@ const Bill = () => {
   );
   // const billFilter = bills?.filter((item) => item.status === false) || [];
   const billFilter = [];
-  console.log("billFilter", billFilter);
 
   return (
     <>

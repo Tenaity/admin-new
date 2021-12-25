@@ -56,22 +56,7 @@ export default function CreateHotel() {
   };
   const onSubmitHandle = async (e) => {
     if (user) {
-      //   const imagesUrl = images.split(" ");
       const totalRoomsNew = parseInt(totalRooms);
-      console.log(token);
-      console.log("addhotel", {
-        name: name,
-        idUser: userId,
-        city: city,
-        address: address,
-        phone: phone,
-        totalRooms: totalRoomsNew,
-        availableRooms: 50,
-        imageCover: "#",
-        images: [],
-        priceFrom: priceFrom,
-        priceTo: priceTo,
-      });
       try {
         e.preventDefault();
         const option = {
@@ -86,7 +71,7 @@ export default function CreateHotel() {
             totalRooms: totalRoomsNew,
             availableRooms: 50,
             imageCover: "#",
-            images: [],
+            images: [images],
             priceFrom: priceFrom,
             priceTo: priceTo,
           },
@@ -95,7 +80,6 @@ export default function CreateHotel() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 201) {
           toast({
             render: () => (

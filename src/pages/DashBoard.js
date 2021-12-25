@@ -6,7 +6,6 @@ import AppContext from "../components/AppContext";
 export default function DashBoard() {
   const { state } = useContext(AppContext);
   const user = state.user;
-  console.log(user);
   return (
     <Box as="section" bg="gray.50" minH="100vh">
       <Sidebar user={user} />

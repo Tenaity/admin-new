@@ -5,7 +5,6 @@ const CarouselBeauty = ({ images = [] }) => {
     image = "https://vnpi-hcm.vn/wp-content/uploads/2018/01/no-image-800x600.pngs",
   ] = images;
   const [currentImage, setCurrentImage] = useState(image);
-  console.log("image", images);
   return (
     <Flex
       direction="column"

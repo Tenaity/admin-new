@@ -27,8 +27,6 @@ const ComponentToPrint = (props) => {
   const { data = [] } = props;
   const { userId } = props;
   const { token } = props;
-  console.log("useriddddd", userId);
-  console.log("tokennnn", token);
   let dateCheckIn = new Date(data.checkIn);
   let dateCheckOut = new Date(data.checkOut);
   const toast = useToast();
@@ -301,13 +299,11 @@ function Invoice() {
       },
     }).then((response) => response.json());
   };
-  console.log("id invoice", id);
   const { data: bill } = useSWR(
     [`https://pbl6-travelapp.herokuapp.com/bill/${userId}/${id}`, token],
     fetcher,
     { refreshInterval: 1000 }
   );
-  console.log("billlllllxxx", bill);
 
   return (
     <>

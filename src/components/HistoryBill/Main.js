@@ -16,9 +16,6 @@ import React, { useRef } from "react";
 import useSWR from "swr";
 const ComponentToPrint = (props) => {
   const { data = [] } = props;
-  console.log(data);
-  // let dateCheckIn = new Date(data.checkIn);
-  // let dateCheckOut = new Date(data.checkOut);
   return (
     <Box
       w="7xl"
@@ -177,7 +174,6 @@ const Main = () => {
     { refreshInterval: 1000 }
   );
   const data = bills?.filter((item) => item.status === true);
-  console.log("history", data);
   return (
     <>
       <Flex direction="column" pt="10">

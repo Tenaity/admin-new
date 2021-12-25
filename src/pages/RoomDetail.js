@@ -46,7 +46,6 @@ const HotelDetail = () => {
     fetcher
   );
 
-  console.log("room detailllll", room);
   const toast = useToast();
 
   const [startDate, setStartDate] = useState("");
@@ -55,7 +54,6 @@ const HotelDetail = () => {
   const userId = localStorage.getItem("userId");
   const { state } = useContext(AppContext);
   const user = state?.user?.userName;
-  console.log("context", state);
   const onSubmitHandle = async (e) => {
     if (user) {
       if (startDate && endDate) {
@@ -91,7 +89,6 @@ const HotelDetail = () => {
               ),
             });
           }
-          console.log(response);
         } catch (err) {
           console.log(err);
         }

@@ -58,13 +58,10 @@ export default function EditSelfVehicle() {
     setName(data.name);
     setAddress(data.address);
     setCity(data.city);
-    console.log("aaa", response.data);
   }, []);
 
   const onSubmitHandle = async (e) => {
     if (user) {
-      const totalRoomsNew = parseInt(totalRooms);
-      console.log(token);
       try {
         e.preventDefault();
         const option = {
@@ -83,7 +80,6 @@ export default function EditSelfVehicle() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 200) {
           toast({
             render: () => (

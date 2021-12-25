@@ -14,8 +14,6 @@ const CardRoom = ({ room }) => {
     rating: room.vote,
   };
 
-  console.log("room detail", room);
-
   return (
     <Link to={`/room/${room._id}`}>
       <Flex>

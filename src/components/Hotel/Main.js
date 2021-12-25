@@ -31,7 +31,6 @@ const Main = () => {
   const { handleEnter, inputValue, handleUserInput, listFeedback } =
     useFeedback();
   const countFeedback = data.feedbacks ? data.feedbacks.length : 0;
-  console.log(countFeedback);
 
   return (
     <>

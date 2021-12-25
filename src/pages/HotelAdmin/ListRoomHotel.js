@@ -26,12 +26,9 @@ const ComponentToPrint = (props) => {
   const { data = [] } = props;
   const { userId } = props;
   const { token } = props;
-  console.log("useriddddd", userId);
-  console.log("tokennnn", token);
   const toast = useToast();
 
   const onDeleteHandle = async (id) => {
-    console.log(id);
     if (userId) {
       try {
         const option = {
@@ -52,7 +49,6 @@ const ComponentToPrint = (props) => {
             ),
           });
         }
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -174,7 +170,6 @@ export default function ListRoomHotelAdmin() {
     fetcher,
     { refreshInterval: 1000 }
   );
-  console.log(data);
   return (
     <Box as="section" bg="gray.50" minH="100vh">
       <SideBar user={user} />

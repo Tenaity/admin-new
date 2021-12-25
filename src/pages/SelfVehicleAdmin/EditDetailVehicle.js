@@ -74,7 +74,6 @@ export default function EditDetailVehicle() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 200) {
           toast({
             render: () => (

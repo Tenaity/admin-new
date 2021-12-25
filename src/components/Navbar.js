@@ -40,7 +40,6 @@ const Navbar = () => {
     `https://pbl6-travelapp.herokuapp.com/hotel?city=${inputChange}`,
     fetcher
   );
-  console.log("SearchItem", searchItem);
   const signOut = () => {
     const token = localStorage.getItem("token");
     const option = {

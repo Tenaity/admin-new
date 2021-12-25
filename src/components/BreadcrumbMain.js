@@ -14,7 +14,6 @@ const BreadcrumbMain = ({ urls = [] }) => {
       pt={5}
     >
       {urls.map((item, index) => {
-        console.log(3);
         return (
           <BreadcrumbItem key={index}>
             <BreadcrumbLink>

@@ -22,7 +22,6 @@ const Main = () => {
     `https://pbl6-travelapp.herokuapp.com/hotel?priceFrom=${priceFrom}&priceTo=${priceTo}&sort=${sortby}`,
     fetcher
   );
-  console.log("list hotel", hotel);
   return (
     <>
       <Box d="flex" flexWrap="wrap" maxW="6xl" mx="auto" mt="5">

@@ -74,26 +74,11 @@ export default function EditHotel() {
     setAddress(data.address);
     setTotalRooms(data.totalRooms);
     setCity(data.city);
-    console.log("aaa", response.data);
   }, []);
 
   const onSubmitHandle = async (e) => {
-    console.log("dataaa", {
-      name: name,
-      idUser: userId,
-      city: city,
-      address: address,
-      phone: phone,
-      totalRooms: totalRooms,
-      availableRooms: 50,
-      imageCover: "#",
-      images: [],
-      priceFrom: priceFrom,
-      priceTo: priceTo,
-    });
     if (user) {
       const totalRoomsNew = parseInt(totalRooms);
-      console.log(token);
       try {
         e.preventDefault();
         const option = {
@@ -108,7 +93,7 @@ export default function EditHotel() {
             totalRooms: totalRoomsNew,
             availableRooms: 50,
             imageCover: "#",
-            images: [],
+            images: [images],
             priceFrom: priceFrom,
             priceTo: priceTo,
           },
@@ -117,7 +102,6 @@ export default function EditHotel() {
           },
         };
         const response = await axios(option);
-        console.log(response);
         if (response.status === 200) {
           toast({
             render: () => (
